@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/02/25 14:59:18 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/02/25 15:04:57 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,9 @@ typedef struct s_table
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
 }	t_table;
+
+// Utility functions for printing information
+void	put_str(char *str);
+void	put_nbr(long n);
 
 #endif
