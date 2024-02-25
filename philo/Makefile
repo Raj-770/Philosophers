@@ -6,7 +6,7 @@ CFLAGS	:=	-Wextra -Wall -Werror
 THREADFLAGS := -pthread -fsanitize=thread
 
 # Source
-SRCS	:=	src/philo.c \
+SRCS	:=	src/main.c \
 			src/parse_args.c \
 			src/utils.c \
 			src/init.c \

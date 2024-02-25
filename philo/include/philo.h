@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/02/25 15:04:57 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/02/25 15:13:49 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_philo
 {
 	int			id;
 	int			n_times_ate;
-	int			fork_left;
 	int			fork_left;
 	int			fork_right;
 	long		t_last_ate;
@@ -47,5 +46,8 @@ typedef struct s_table
 // Utility functions for printing information
 void	put_str(char *str);
 void	put_nbr(long n);
+
+// Parsing user input
+int		parse_args(int argc, char **argv, t_table *table);
 
 #endif
