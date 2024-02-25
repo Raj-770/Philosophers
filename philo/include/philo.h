@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/02/25 15:13:49 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/02/25 15:29:53 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_table
 	int				max_meals;
 	int				all_good;
 	long			start_time;
-	t_philo		*philos;
+	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
 }	t_table;
@@ -49,5 +49,8 @@ void	put_nbr(long n);
 
 // Parsing user input
 int		parse_args(int argc, char **argv, t_table *table);
+
+// Initializes philos and forks
+int		init(t_table *table);
 
 #endif
