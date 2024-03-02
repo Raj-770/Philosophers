@@ -6,9 +6,11 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 11:59:23 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/02 12:09:11 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/02 14:15:58 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../include/philo.h"
 
 /**
  * @brief Get the current time in miliseconds by getting the time from
