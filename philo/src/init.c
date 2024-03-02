@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:20:50 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/02/25 15:30:54 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/02 12:27:21 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	init(t_table *table)
 		table->philos[i].id = i + 1;
 		table->philos[i].fork_left = i;
 		table->philos[i].fork_right = (i + 1) % n;
+		table->philos[i].table = &table;
 		i++;
 	}
 	return (1);

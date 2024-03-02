@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/02/25 15:29:53 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/02 12:26:51 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_philo
 	int			n_times_ate;
 	int			fork_left;
 	int			fork_right;
+	t_table			*table;
 	long		t_last_ate;
 	pthread_t	thread;
 }	t_philo;
@@ -52,5 +53,9 @@ int		parse_args(int argc, char **argv, t_table *table);
 
 // Initializes philos and forks
 int		init(t_table *table);
+
+// Time Functions
+long	get_current_time(void);
+void	ft_usleep(long int duration);
 
 #endif
