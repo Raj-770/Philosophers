@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:33:07 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/02/25 15:38:43 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:43:40 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	end(t_table *table)
 	i = 0;
 	while (i < table->n_philo)
 	{
-		pthread_join(table->philos[i].thread, NULL);
+		pthread_join(table->philos[i].routine, NULL);
 		pthread_mutex_destroy(&table->forks[i]);
 		i++;
 	}

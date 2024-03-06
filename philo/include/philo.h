@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/06 11:11:05 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:02:42 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_table
 	pthread_mutex_t	print;
 	pthread_mutex_t	monitor_death;
 	pthread_mutex_t	eat;
+	pthread_mutex_t	meal_check;
 }	t_table;
 
 // Utility functions for printing information
@@ -60,6 +61,8 @@ int		parse_args(int argc, char **argv, t_table *table);
 
 // Initializes philos and forks
 int		init(t_table *table);
+int		initialize_table(t_table *table);
+int		initialize_philos(t_table *table);
 
 // Time Functions
 long	get_current_time(void);
