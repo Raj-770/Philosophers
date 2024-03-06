@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/06 11:07:06 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:11:05 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	philo_sleeps(t_philo *philo);
 void	philo_thinks(t_philo *philo);
 
 // Start and End
-void	start(t_table *table);
+int	start(t_table *table);
 void	end(t_table *table);
 
 
