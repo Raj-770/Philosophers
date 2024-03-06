@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/02 16:29:04 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:07:06 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef struct s_philo
 	int			fork_right;
 	long		t_last_ate;
 	t_table		*table;
-	pthread_t	thread;
+	pthread_t	routine;
+	pthread_t	death;
 }	t_philo;
 
 typedef struct s_table
@@ -45,6 +46,8 @@ typedef struct s_table
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
+	pthread_mutex_t	monitor_death;
+	pthread_mutex_t	eat;
 }	t_table;
 
 // Utility functions for printing information

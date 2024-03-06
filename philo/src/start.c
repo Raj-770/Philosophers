@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:11:20 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/02 16:47:55 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:08:00 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	start(t_table *table)
 	while (i < table->n_philo)
 	{
 
-		pthread_create(&table->philos[i].thread, NULL, &routine, (void *)&table->philos[i]);
+		pthread_create(&table->philos[i].routine, NULL, &routine, (void *)&table->philos[i]);
 		i++;
 	}
 }
