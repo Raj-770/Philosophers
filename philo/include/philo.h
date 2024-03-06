@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/06 15:36:06 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:00:25 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
-typedef struct s_table t_table;
+typedef struct s_table	t_table;
 
 typedef struct s_philo
 {
@@ -46,9 +46,7 @@ typedef struct s_table
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
-	pthread_mutex_t	monitor_death;
 	pthread_mutex_t	eat;
-	pthread_mutex_t	meal_check;
 }	t_table;
 
 // Utility functions for printing information
@@ -78,8 +76,7 @@ void	philo_sleeps(t_philo *philo);
 void	philo_thinks(t_philo *philo);
 
 // Start and End
-int	start(t_table *table);
+int		start(t_table *table);
 void	end(t_table *table);
-
 
 #endif

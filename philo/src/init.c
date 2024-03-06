@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:20:50 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/06 13:31:43 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:57:12 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	initialize_table(t_table *table)
 	table->philos = (t_philo *)malloc(n * sizeof(t_philo));
 	if (table->philos == NULL || table->forks == NULL)
 		return (0);
-	if (pthread_mutex_init(&table->eat, NULL) != 0 ||
-		pthread_mutex_init(&table->print, NULL) != 0 ||
-		pthread_mutex_init(&table->monitor_death, NULL) != 0 ||
+	if (pthread_mutex_init(&table->eat, NULL) != 0 || \
+		pthread_mutex_init(&table->print, NULL) != 0 || \
+		pthread_mutex_init(&table->monitor_death, NULL) != 0 || \
 		pthread_mutex_init(&table->meal_check, NULL) != 0)
 		return (0);
 	return (1);
