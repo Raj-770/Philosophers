@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/06 12:02:42 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:36:06 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	ft_usleep(long int duration);
 
 // Routine
 void	*routine(void *p);
+void	*monitor_death(void *p);
 
 // Philo Actions
 void	philo_eats(t_philo *philo);
