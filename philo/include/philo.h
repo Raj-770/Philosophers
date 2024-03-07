@@ -43,16 +43,19 @@ typedef struct s_table
 	int				all_good;
 	long			start_time;
 	int				start_signal;
+	int				threads_ready;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
 	pthread_mutex_t	eat;
+	pthread_mutex_t	start_mutex;
 }	t_table;
 
 // Utility functions for printing information
 void	put_str(char *str);
 void	put_nbr(long n);
-void	print_action(char *action, t_philo *philo);
+// void	print_action(char *action, t_philo *philo);
+void	print_action(char *action, t_philo *philo, long int current_time);
 
 // Parsing user input
 int		parse_args(int argc, char **argv, t_table *table);

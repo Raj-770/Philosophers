@@ -28,14 +28,14 @@ int	initialize_table(t_table *table)
 	n = table->n_philo;
 	table->all_good = 1;
 	table->start_signal = 0;
+	table->threads_ready = 0;
 	table->forks = (pthread_mutex_t *)malloc(n * sizeof(pthread_mutex_t));
 	table->philos = (t_philo *)malloc(n * sizeof(t_philo));
 	if (table->philos == NULL || table->forks == NULL)
 		return (0);
 	if (pthread_mutex_init(&table->eat, NULL) != 0 || \
 		pthread_mutex_init(&table->print, NULL) != 0 || \
-		pthread_mutex_init(&table->monitor_death, NULL) != 0 || \
-		pthread_mutex_init(&table->meal_check, NULL) != 0)
+		pthread_mutex_init(&table->start_mutex, NULL) != 0)
 		return (0);
 	return (1);
 }

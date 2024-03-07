@@ -44,10 +44,10 @@ void	put_nbr(long n)
 	}
 }
 
-void	print_action(char *action, t_philo *philo)
+void	print_action(char *action, t_philo *philo, long int current_time)
 {
 	pthread_mutex_lock(&philo->table->print);
-	put_nbr(get_current_time() - philo->table->start_time);
+	put_nbr(current_time - philo->table->start_time);
 	put_str(" Philo ");
 	put_nbr(philo->id);
 	write(1, " ", 1);
