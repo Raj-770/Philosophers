@@ -6,28 +6,20 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:16:12 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/06 15:59:27 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:15:39 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-// Issue: Delay after the last meal of even numbered philos
+static void	wait_for_threads(t_philo *philo);
 
 void	*routine(void *p)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)p;
-	while (1) {
-        pthread_mutex_lock(&philo->table->start_mutex);
-        if (philo->table->start_signal) {
-            pthread_mutex_unlock(&philo->table->start_mutex);
-			philo->table->start_time = get_current_time();
-            break;
-        }
-        pthread_mutex_unlock(&philo->table->start_mutex);
-    }
+	wait_for_threads(philo);
 	if (philo->id % 2 == 0)
 		ft_usleep(philo->table->t_eat / 10);
 	while (philo->table->all_good)
@@ -40,4 +32,20 @@ void	*routine(void *p)
 			break ;
 	}
 	return (NULL);
+}
+
+static void	wait_for_threads(t_philo *philo)
+{
+	while (1)
+	{
+		pthread_mutex_lock(&philo->table->start_mutex);
+		if (philo->table->start_signal)
+		{
+			pthread_mutex_unlock(&philo->table->start_mutex);
+			philo->table->start_time = get_current_time();
+			break ;
+		}
+		pthread_mutex_unlock(&philo->table->start_mutex);
+	}
+	return ;
 }
