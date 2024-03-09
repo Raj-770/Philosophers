@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:16:12 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/08 16:15:39 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/09 12:46:30 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	*routine(void *p)
 		philo_thinks(philo);
 		if (philo->table->max_meals > 0 && philo->n_times_ate == \
 		philo->table->max_meals)
-			break ;
+		{
+			philo->table->all_good = 0;
+			return (NULL);
+		}
 	}
 	return (NULL);
 }

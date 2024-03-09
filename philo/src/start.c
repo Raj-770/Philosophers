@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:11:20 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/08 16:16:08 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/09 12:47:02 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	*monitor_death(void *p)
 	while (table->all_good)
 	{
 		i = 0;
-		while (i < table->n_philo)
+		while (i < table->n_philo && table->all_good)
 		{
 			pthread_mutex_lock(&table->eat);
 			current_time = get_current_time();
