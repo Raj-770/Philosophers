@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:11:20 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/09 12:47:02 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:22:30 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,10 @@ int	start(t_table *table)
 		if (pthread_create(&table->philos[i].routine, NULL, &routine, \
 		(void *)&table->philos[i]) != 0)
 			return (0);
-		pthread_mutex_lock(&table->start_mutex);
-		table->threads_ready++;
-		if (table->threads_ready == table->n_philo)
-			table->start_signal = 1;
-		pthread_mutex_unlock(&table->start_mutex);
 		i++;
 	}
+	table->start_time = get_current_time();
+	table->start_signal = 1;
 	pthread_join(monitor_thread, NULL);
 	return (1);
 }
@@ -44,7 +41,7 @@ void	*monitor_death(void *p)
 	long	current_time;
 
 	table = (t_table *)p;
-	ft_usleep(table->t_die + 1);
+	ft_usleep(table->t_die * 2);
 	while (table->all_good)
 	{
 		i = 0;

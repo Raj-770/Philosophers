@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/06 16:00:25 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:00:00 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_philo
 	long		t_last_ate;
 	t_table		*table;
 	pthread_t	routine;
-	pthread_t	death;
 }	t_philo;
 
 typedef struct s_table

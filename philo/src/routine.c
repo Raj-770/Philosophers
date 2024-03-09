@@ -6,20 +6,19 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:16:12 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/09 12:46:30 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:24:59 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
-static void	wait_for_threads(t_philo *philo);
 
 void	*routine(void *p)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)p;
-	wait_for_threads(philo);
+	while (philo->table->start_signal == 0)
+		usleep(1);
 	if (philo->id % 2 == 0)
 		ft_usleep(philo->table->t_eat / 10);
 	while (philo->table->all_good)
@@ -35,20 +34,4 @@ void	*routine(void *p)
 		}
 	}
 	return (NULL);
-}
-
-static void	wait_for_threads(t_philo *philo)
-{
-	while (1)
-	{
-		pthread_mutex_lock(&philo->table->start_mutex);
-		if (philo->table->start_signal)
-		{
-			pthread_mutex_unlock(&philo->table->start_mutex);
-			philo->table->start_time = get_current_time();
-			break ;
-		}
-		pthread_mutex_unlock(&philo->table->start_mutex);
-	}
-	return ;
 }
