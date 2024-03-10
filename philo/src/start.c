@@ -6,21 +6,21 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:11:20 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/09 16:22:30 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:49:46 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
+
+int	check_meals(t_table *table, int *j);
+void	check_death(t_philo *philo);
+
 int	start(t_table *table)
 {
-	pthread_t	monitor_thread;
 	int			i;
 
 	i = 0;
-	if (pthread_create(&monitor_thread, NULL, &monitor_death, (void *)table) \
-	!= 0)
-		return (0);
 	while (i < table->n_philo)
 	{
 		if (pthread_create(&table->philos[i].routine, NULL, &routine, \
@@ -30,35 +30,54 @@ int	start(t_table *table)
 	}
 	table->start_time = get_current_time();
 	table->start_signal = 1;
-	pthread_join(monitor_thread, NULL);
+	ft_usleep(table->t_die + 1);
+	while (table->all_good)
+		monitor_death(table);
 	return (1);
 }
 
-void	*monitor_death(void *p)
+void	monitor_death(void *t)
 {
 	t_table	*table;
 	int		i;
-	long	current_time;
+	int		j;
 
-	table = (t_table *)p;
-	ft_usleep(table->t_die * 2);
+	table = (t_table *)t;
+	i = 0;
+	j = 0;
 	while (table->all_good)
 	{
-		i = 0;
-		while (i < table->n_philo && table->all_good)
+		check_death(&table->philos[i]);
+		if (check_meals(table, &j) == 1)
+			table->all_good = 0;
+		if (i == table->n_philo -1)
+				i = -1;
+	}
+}
+
+void check_death(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->table->eat);
+	if (get_current_time() - philo->t_last_ate > philo->table->t_die)
+	{
+		print_action("died", philo, get_current_time());
+		philo->table->all_good = 0;
+	}
+	pthread_mutex_unlock(&philo->table->eat);
+}
+
+int	check_meals(t_table *table, int *j)
+{
+	if (table->max_meals > 0)
+	{
+		while (*j < table->n_philo)
 		{
-			pthread_mutex_lock(&table->eat);
-			current_time = get_current_time();
-			if ((current_time - table->philos[i].t_last_ate > table->t_die) \
-			&& table->all_good)
-			{
-				table->all_good = 0;
-				print_action("died", &table->philos[i], get_current_time());
-				pthread_mutex_unlock(&table->eat);
-				return (NULL);
-			}
-			pthread_mutex_unlock(&table->eat);
+			if (table->philos[*j].n_times_ate < table->max_meals)
+				break ;
+			(*j)++;
 		}
 	}
-	return (NULL);
+	if (*j == table->n_philo)
+		return (1);
+	return (0);
 }

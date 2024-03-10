@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:32:19 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/08 16:12:43 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:37:10 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	philo_eats(t_philo *philo)
 		if (philo->table->n_philo == 1)
 		{
 			ft_usleep(philo->table->t_die + 1);
-			pthread_mutex_unlock(&philo->table->forks[second_fork]);
+			pthread_mutex_unlock(&philo->table->forks[first_fork]);
 			return ;
 		}
 		pthread_mutex_lock(&philo->table->forks[second_fork]);

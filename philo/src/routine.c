@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:16:12 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/09 16:24:59 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:47:45 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,20 @@ void	*routine(void *p)
 	while (philo->table->start_signal == 0)
 		usleep(1);
 	if (philo->id % 2 == 0)
-		ft_usleep(philo->table->t_eat / 10);
+		usleep(1500);
 	while (philo->table->all_good)
 	{
-		philo_eats(philo);
-		philo_sleeps(philo);
-		philo_thinks(philo);
-		if (philo->table->max_meals > 0 && philo->n_times_ate == \
-		philo->table->max_meals)
+		if (philo->table->n_philo == 1)
 		{
-			philo->table->all_good = 0;
+			philo_eats(philo);
 			return (NULL);
 		}
+		philo_eats(philo);
+		if (philo->table->max_meals > 0 && philo->n_times_ate == \
+		philo->table->max_meals)
+			return (NULL) ;
+		philo_sleeps(philo);
+		philo_thinks(philo);
 	}
 	return (NULL);
 }

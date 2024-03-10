@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/09 14:00:00 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:16:48 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ typedef struct s_table
 	long			start_time;
 	int				start_signal;
 	int				threads_ready;
+	int				finished_meals;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
 	pthread_mutex_t	eat;
 	pthread_mutex_t	start_mutex;
+	pthread_mutex_t	death_monitor;
 }	t_table;
 
 // Utility functions for printing information
@@ -70,7 +72,7 @@ void	ft_usleep(long int duration);
 
 // Routine
 void	*routine(void *p);
-void	*monitor_death(void *p);
+void	monitor_death(void *t);
 
 // Philo Actions
 void	philo_eats(t_philo *philo);
