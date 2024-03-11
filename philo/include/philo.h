@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/11 13:14:40 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:43:24 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_philo
 	int			fork_left;
 	int			fork_right;
 	long		t_last_ate;
+	bool		threads_all_good;
 	t_table		*table;
 	pthread_t	routine;
 }	t_philo;
@@ -48,6 +49,7 @@ typedef struct s_table
 	pthread_mutex_t	print;
 	pthread_mutex_t	eat;
 	pthread_mutex_t	start_mutex;
+	pthread_mutex_t	copy_mutex;
 }	t_table;
 
 // Utility functions for printing information

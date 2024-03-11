@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:20:50 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/11 13:12:17 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:44:30 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	initialize_table(t_table *table)
 		return (0);
 	if (pthread_mutex_init(&table->eat, NULL) != 0 || \
 		pthread_mutex_init(&table->print, NULL) != 0 || \
+		pthread_mutex_init(&table->copy_mutex, NULL) != 0 || \
 		pthread_mutex_init(&table->start_mutex, NULL) != 0)
 		return (0);
 	return (1);

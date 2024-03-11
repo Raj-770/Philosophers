@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:32:19 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/11 11:17:46 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:54:03 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	philo_eats(t_philo *philo)
 	int	forks[2];
 
 	which_to_pick_first(&forks[0], &forks[1], philo);
-	if (philo->table->all_good)
+	if (philo->threads_all_good)
 	{
 		pthread_mutex_lock(&philo->table->forks[forks[0]]);
 		if (philo->table->n_philo == 1)
@@ -45,7 +45,7 @@ void	philo_eats(t_philo *philo)
 
 void	philo_sleeps(t_philo *philo)
 {
-	if (philo->table->all_good)
+	if (philo->threads_all_good)
 	{
 		print_action("is sleeping", philo);
 		ft_usleep(philo->table->t_sleep);
@@ -54,7 +54,7 @@ void	philo_sleeps(t_philo *philo)
 
 void	philo_thinks(t_philo *philo)
 {
-	if (philo->table->all_good)
+	if (philo->threads_all_good)
 		print_action("is thinking", philo);
 }
 
