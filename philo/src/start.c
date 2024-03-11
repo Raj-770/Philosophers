@@ -6,14 +6,11 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:11:20 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/11 10:50:27 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:14:43 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
-int		check_meals(t_table *table, int *j);
-void	check_death(t_philo *philo);
 
 int	start(t_table *table)
 {
@@ -60,7 +57,7 @@ void	check_death(t_philo *philo)
 	pthread_mutex_lock(&philo->table->eat);
 	if (get_current_time() - philo->t_last_ate > philo->table->t_die)
 	{
-		print_action("died", philo, get_current_time());
+		print_action("died", philo);
 		philo->table->all_good = 0;
 	}
 	pthread_mutex_unlock(&philo->table->eat);

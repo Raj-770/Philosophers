@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:32:19 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/10 18:37:10 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/11 11:17:46 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,30 @@ static void	which_to_pick_first(int *first_fork, int *second_fork, t_philo *p);
 
 void	philo_eats(t_philo *philo)
 {
-	int	first_fork;
-	int	second_fork;
+	int	forks[2];
 
-	which_to_pick_first(&first_fork, &second_fork, philo);
+	which_to_pick_first(&forks[0], &forks[1], philo);
 	if (philo->table->all_good)
 	{
-		pthread_mutex_lock(&philo->table->forks[first_fork]);
-		print_action("has taken a fork", philo, get_current_time());
+		pthread_mutex_lock(&philo->table->forks[forks[0]]);
 		if (philo->table->n_philo == 1)
 		{
+			print_action("has taken a fork", philo);
 			ft_usleep(philo->table->t_die + 1);
-			pthread_mutex_unlock(&philo->table->forks[first_fork]);
+			pthread_mutex_unlock(&philo->table->forks[forks[0]]);
 			return ;
 		}
-		pthread_mutex_lock(&philo->table->forks[second_fork]);
-		print_action("has taken a fork", philo, get_current_time());
-		print_action("is eating", philo, get_current_time());
+		pthread_mutex_lock(&philo->table->forks[forks[1]]);
+		print_action("has taken a fork", philo);
+		print_action("has taken a fork", philo);
+		print_action("is eating", philo);
 		pthread_mutex_lock(&philo->table->eat);
 		philo->t_last_ate = get_current_time();
 		philo->n_times_ate++;
 		pthread_mutex_unlock(&philo->table->eat);
 		ft_usleep(philo->table->t_eat);
-		pthread_mutex_unlock(&philo->table->forks[second_fork]);
-		pthread_mutex_unlock(&philo->table->forks[first_fork]);
+		pthread_mutex_unlock(&philo->table->forks[forks[1]]);
+		pthread_mutex_unlock(&philo->table->forks[forks[0]]);
 	}
 }
 
@@ -47,7 +47,7 @@ void	philo_sleeps(t_philo *philo)
 {
 	if (philo->table->all_good)
 	{
-		print_action("is sleeping", philo, get_current_time());
+		print_action("is sleeping", philo);
 		ft_usleep(philo->table->t_sleep);
 	}
 }
@@ -55,7 +55,7 @@ void	philo_sleeps(t_philo *philo)
 void	philo_thinks(t_philo *philo)
 {
 	if (philo->table->all_good)
-		print_action("is thinking", philo, get_current_time());
+		print_action("is thinking", philo);
 }
 
 static void	which_to_pick_first(int *first_fork, int *second_fork, t_philo *p)

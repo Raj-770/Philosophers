@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/11 10:34:51 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:14:40 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,18 @@ typedef struct s_table
 	int				max_meals;
 	int				all_good;
 	long			start_time;
-	int				start_signal;
 	int				threads_ready;
-	int				finished_meals;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
 	pthread_mutex_t	eat;
 	pthread_mutex_t	start_mutex;
-	pthread_mutex_t	death_monitor;
 }	t_table;
 
 // Utility functions for printing information
 void	put_str(char *str);
 void	put_nbr(long n);
-// void	print_action(char *action, t_philo *philo);
-void	print_action(char *action, t_philo *philo, long int current_time);
+void	print_action(char *action, t_philo *philo);
 
 // Parsing user input
 int		parse_args(int argc, char **argv, t_table *table);
@@ -73,7 +69,12 @@ void	ft_usleep(long int duration);
 
 // Routine
 void	*routine(void *p);
+void	philo_do(t_philo *philo);
+
+// Checking Death
 void	monitor_death(void *t);
+int		check_meals(t_table *table, int *j);
+void	check_death(t_philo *philo);
 
 // Philo Actions
 void	philo_eats(t_philo *philo);

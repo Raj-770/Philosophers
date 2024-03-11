@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:03:36 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/10 18:52:24 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:06:25 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void	put_nbr(long n)
 	}
 }
 
-void	print_action(char *action, t_philo *philo, long int current_time)
+void	print_action(char *action, t_philo *philo)
 {
 	if (!philo->table->all_good)
 		return ;
 	pthread_mutex_lock(&philo->table->print);
-	put_nbr(current_time - philo->table->start_time);
+	put_nbr(get_current_time() - philo->table->start_time);
 	put_str(" Philo ");
 	put_nbr(philo->id);
 	write(1, " ", 1);

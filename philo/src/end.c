@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:33:07 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/10 14:59:56 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:13:11 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	end(t_table *table)
 		pthread_mutex_destroy(&table->forks[i]);
 		i++;
 	}
+	pthread_mutex_destroy(&table->eat);
+	pthread_mutex_destroy(&table->print);
+	pthread_mutex_destroy(&table->start_mutex);
 	free(table->philos);
 	free(table->forks);
 }
