@@ -6,14 +6,13 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:11:20 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/10 18:49:46 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/11 09:25:20 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-
-int	check_meals(t_table *table, int *j);
+int		check_meals(t_table *table, int *j);
 void	check_death(t_philo *philo);
 
 int	start(t_table *table)
@@ -26,10 +25,9 @@ int	start(t_table *table)
 		if (pthread_create(&table->philos[i].routine, NULL, &routine, \
 		(void *)&table->philos[i]) != 0)
 			return (0);
+		table->threads_ready++;
 		i++;
 	}
-	table->start_time = get_current_time();
-	table->start_signal = 1;
 	ft_usleep(table->t_die + 1);
 	while (table->all_good)
 		monitor_death(table);
@@ -51,11 +49,11 @@ void	monitor_death(void *t)
 		if (check_meals(table, &j) == 1)
 			table->all_good = 0;
 		if (i == table->n_philo -1)
-				i = -1;
+			i = -1;
 	}
 }
 
-void check_death(t_philo *philo)
+void	check_death(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->eat);
 	if (get_current_time() - philo->t_last_ate > philo->table->t_die)
