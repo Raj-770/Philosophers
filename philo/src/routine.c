@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:16:12 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/11 10:49:47 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/11 10:55:04 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ void	*routine(void *p)
 		pthread_mutex_unlock(&philo->table->start_mutex);
 		if (all_threads_ready)
 		{
+			pthread_mutex_lock(&philo->table->print);
 			philo->table->start_time = get_current_time();
+			pthread_mutex_unlock(&philo->table->print);
 			break ;
 		}
 		usleep(1);
