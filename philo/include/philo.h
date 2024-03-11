@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/10 18:16:48 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/11 10:34:51 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <pthread.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <stdbool.h>
 
 typedef struct s_table	t_table;
 

@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:16:12 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/11 09:27:50 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/11 10:42:59 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,19 @@
 void	*routine(void *p)
 {
 	t_philo	*philo;
+	bool	all_threads_ready;
 
 	philo = (t_philo *)p;
-	while (philo->table->threads_ready != philo->table->n_philo)
+	all_threads_ready = false;
+	while (1)
+	{
+		pthread_mutex_lock(&philo->table->start_mutex);
+		all_threads_ready = philo->table->threads_ready == philo->table->n_philo;
+		pthread_mutex_unlock(&philo->table->start_mutex);
+		if (all_threads_ready)
+			break ;
 		usleep(1);
+	}
 	if (!philo->table->start_signal)
 	{
 		philo->table->start_time = get_current_time();
