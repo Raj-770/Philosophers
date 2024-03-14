@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:03:36 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/11 13:58:14 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:35:40 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,16 @@ void	print_action(char *action, t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->copy_mutex);
 	philo->threads_all_good = philo->table->all_good;
-	pthread_mutex_unlock(&philo->table->copy_mutex);
 	if (!philo->threads_all_good)
+	{
+		pthread_mutex_unlock(&philo->table->copy_mutex);
 		return ;
+	}
+	pthread_mutex_unlock(&philo->table->copy_mutex);
 	pthread_mutex_lock(&philo->table->print);
 	put_nbr(get_current_time() - philo->table->start_time);
-	put_str(" Philo ");
+	// put_str(" Philo ");
+	write(1, " ", 1);
 	put_nbr(philo->id);
 	write(1, " ", 1);
 	put_str(action);

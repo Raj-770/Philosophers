@@ -2,8 +2,8 @@ NAME	:= philo
 
 # Compiler
 CC	:=	gcc
-CFLAGS	:=	-Wextra -Wall -Werror
-THREADFLAGS := -pthread -fsanitize=thread
+CFLAGS	:=	-Wextra -Wall -Werror -g
+THREADFLAGS := -pthread
 
 # Source
 SRCS	:=	src/main.c \

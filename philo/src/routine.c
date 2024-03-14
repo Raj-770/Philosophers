@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:16:12 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/11 13:57:49 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:48:17 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,12 @@ void	philo_do(t_philo *philo)
 	{
 		pthread_mutex_lock(&philo->table->copy_mutex);
 		philo->threads_all_good = philo->table->all_good;
-		pthread_mutex_unlock(&philo->table->copy_mutex);
 		if (!philo->threads_all_good)
+		{
+			pthread_mutex_unlock(&philo->table->copy_mutex);
 			break ;
+		}
+		pthread_mutex_unlock(&philo->table->copy_mutex);
 		if (philo->table->n_philo == 1)
 		{
 			philo_eats(philo);
