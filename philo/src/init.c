@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:20:50 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/11 13:44:30 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:55:52 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	initialize_philos(t_table *table)
 		table->philos[i].fork_left = i;
 		table->philos[i].fork_right = (i + 1) % n;
 		table->philos[i].n_times_ate = 0;
-		table->philos[i].t_last_ate = 0;
+		table->philos[i].t_last_ate = get_current_time();
 		table->philos[i].table = table;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:11:20 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/14 16:36:03 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:00:16 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	start(t_table *table)
 		pthread_mutex_unlock(&table->start_mutex);
 		i++;
 	}
-	ft_usleep(table->t_die + 1);
 	while (table->all_good)
 		monitor_death(table);
 	return (1);
@@ -53,6 +52,8 @@ void	monitor_death(void *t)
 		}
 		if (i == table->n_philo -1)
 			i = -1;
+		i++;
+		usleep(100);
 	}
 }
 
