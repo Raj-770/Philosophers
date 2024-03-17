@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:32:19 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/17 17:09:45 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/17 17:38:54 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	philo_eats(t_philo *philo)
 	print_action("has taken a fork", philo);
 	if (philo->table->n_philo == 1)
 	{
-		ft_usleep(philo->table->t_die + 1);
+		ft_usleep(philo->table->t_die + 1, philo);
 		pthread_mutex_unlock(&philo->table->forks[first_fork]);
 		return ;
 	}
@@ -35,7 +35,7 @@ void	philo_eats(t_philo *philo)
 	philo->t_last_ate = get_current_time();
 	pthread_mutex_unlock(&philo->table->eat);
 	philo->n_times_ate++;
-	ft_usleep(philo->table->t_eat);
+	ft_usleep(philo->table->t_eat, philo);
 	pthread_mutex_unlock(&philo->table->forks[second_fork]);
 	pthread_mutex_unlock(&philo->table->forks[first_fork]);
 }
@@ -43,7 +43,7 @@ void	philo_eats(t_philo *philo)
 void	philo_sleeps(t_philo *philo)
 {
 	print_action("is sleeping", philo);
-	ft_usleep(philo->table->t_sleep);
+	ft_usleep(philo->table->t_sleep, philo);
 }
 
 void	philo_thinks(t_philo *philo)

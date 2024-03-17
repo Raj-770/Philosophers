@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:52:13 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/11 13:43:24 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/17 17:38:38 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		initialize_philos(t_table *table);
 
 // Time Functions
 long	get_current_time(void);
-void	ft_usleep(long int duration);
+void	ft_usleep(long int duration, t_philo *philo);
 
 // Routine
 void	*routine(void *p);

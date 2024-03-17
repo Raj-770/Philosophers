@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 11:59:23 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/14 16:00:54 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/17 17:39:52 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,21 @@ long	get_current_time(void)
  *
  * @param duration
  */
-void	ft_usleep(long int duration)
+void	ft_usleep(long int duration, t_philo *philo)
 {
 	long int	i;
 
 	i = get_current_time();
 	while ((get_current_time() - i) < duration)
+	{
+		pthread_mutex_lock(&philo->table->copy_mutex);
+		philo->threads_all_good = philo->table->all_good;
+		if (!philo->threads_all_good)
+		{
+			pthread_mutex_unlock(&philo->table->copy_mutex);
+			return ;
+		}
+		pthread_mutex_unlock(&philo->table->copy_mutex);
 		usleep(duration / 10);
+	}
 }

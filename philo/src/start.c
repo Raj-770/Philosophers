@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:11:20 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/17 14:03:38 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/17 17:42:43 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	check_death(t_philo *philo)
 		pthread_mutex_lock(&philo->table->copy_mutex);
 		philo->table->all_good = 0;
 		pthread_mutex_unlock(&philo->table->copy_mutex);
+		pthread_mutex_unlock(&philo->table->eat);
+		return ;
 	}
 	pthread_mutex_unlock(&philo->table->eat);
 }
