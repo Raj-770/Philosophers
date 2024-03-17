@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:32:19 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/14 17:01:59 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/17 14:08:20 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	philo_eats(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->table->eat);
 	pthread_mutex_lock(&philo->table->forks[philo->fork_right]);
 	print_action("has taken a fork", philo);
 	if (philo->fork_left == philo->fork_right)
@@ -27,6 +26,7 @@ void	philo_eats(t_philo *philo)
 	pthread_mutex_lock(&philo->table->forks[philo->fork_left]);
 	print_action("has taken a fork", philo);
 	print_action("is eating", philo);
+	pthread_mutex_lock(&philo->table->eat);
 	philo->t_last_ate = get_current_time();
 	pthread_mutex_unlock(&philo->table->eat);
 	philo->n_times_ate++;
