@@ -6,7 +6,7 @@
 /*   By: rpambhar <rpambhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:11:20 by rpambhar          #+#    #+#             */
-/*   Updated: 2024/03/17 17:42:43 by rpambhar         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:01:15 by rpambhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,30 @@ void	monitor_death(void *t)
 	while (table->all_good)
 	{
 		check_death(&table->philos[i]);
+		pthread_mutex_lock(&table->eat);
 		if (check_meals(table, &j) == 1)
 		{
+			pthread_mutex_unlock(&table->eat);
 			pthread_mutex_lock(&table->copy_mutex);
 			table->all_good = 0;
 			pthread_mutex_unlock(&table->copy_mutex);
 		}
+		pthread_mutex_unlock(&table->eat);
 		if (i == table->n_philo -1)
 			i = -1;
 		i++;
-		usleep(100);
+		usleep(200);
 	}
 }
 
 void	check_death(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->eat);
+	if (philo->table-> max_meals > 0 && philo->n_times_ate == philo->table->max_meals)
+	{
+		pthread_mutex_unlock(&philo->table->eat);
+		return ;
+	}
 	if (get_current_time() - philo->t_last_ate > philo->table->t_die)
 	{
 		print_action("died", philo);
@@ -79,7 +87,9 @@ int	check_meals(t_table *table, int *j)
 		while (*j < table->n_philo)
 		{
 			if (table->philos[*j].n_times_ate < table->max_meals)
+			{
 				break ;
+			}
 			(*j)++;
 		}
 	}
